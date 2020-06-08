@@ -1,0 +1,1 @@
+F:\Ycheba\4sem\chat\ChatClientServer\ChatServer\obj\Debug\ChatServer.csprojAssemblyReference.cache
