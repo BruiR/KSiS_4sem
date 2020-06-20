@@ -1,0 +1,4 @@
+F:\Ycheba\4sem\KSIS\L3\Laba3\ClientHttp\bin\Debug\ClientHttp.dll
+F:\Ycheba\4sem\KSIS\L3\Laba3\ClientHttp\bin\Debug\ClientHttp.pdb
+F:\Ycheba\4sem\KSIS\L3\Laba3\ClientHttp\obj\Debug\ClientHttp.dll
+F:\Ycheba\4sem\KSIS\L3\Laba3\ClientHttp\obj\Debug\ClientHttp.pdb
