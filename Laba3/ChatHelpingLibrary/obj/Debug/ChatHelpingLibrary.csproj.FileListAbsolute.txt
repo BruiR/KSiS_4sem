@@ -19,3 +19,4 @@ F:\Ycheba\4sem\KSIS\L3\Laba3\ChatHelpingLibrary\bin\Debug\ChatHelpingLibrary.dll
 F:\Ycheba\4sem\KSIS\L3\Laba3\ChatHelpingLibrary\bin\Debug\ChatHelpingLibrary.pdb
 F:\Ycheba\4sem\KSIS\L3\Laba3\ChatHelpingLibrary\obj\Debug\ChatHelpingLibrary.dll
 F:\Ycheba\4sem\KSIS\L3\Laba3\ChatHelpingLibrary\obj\Debug\ChatHelpingLibrary.pdb
+F:\Ycheba\4sem\KSIS\L3\Laba3\ChatHelpingLibrary\obj\Debug\ChatHelpingLibrary.csprojAssemblyReference.cache

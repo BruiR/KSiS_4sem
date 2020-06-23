@@ -14,10 +14,8 @@ namespace ChatHelpingLibrary
         public string Name { get; set; }
 
         public List<ChatMessage> MessageHistory;
-        //public Dictionary<int, string> FilesDictionary = new Dictionary<int, string>();
         public ClientInfo() 
         {
-            //FilesDictionary = new Dictionary<int, string>();
             MessageHistory = new List<ChatMessage>();
         }
     }

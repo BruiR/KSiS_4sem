@@ -3,3 +3,4 @@ F:\Ycheba\4sem\KSIS\L3\Laba3\ServerHttp\ServerHttp\bin\Debug\ServerHttp.exe
 F:\Ycheba\4sem\KSIS\L3\Laba3\ServerHttp\ServerHttp\bin\Debug\ServerHttp.pdb
 F:\Ycheba\4sem\KSIS\L3\Laba3\ServerHttp\ServerHttp\obj\Debug\ServerHttp.exe
 F:\Ycheba\4sem\KSIS\L3\Laba3\ServerHttp\ServerHttp\obj\Debug\ServerHttp.pdb
+F:\Ycheba\4sem\KSIS\L3\Laba3\ServerHttp\ServerHttp\obj\Debug\ServerHttp.csprojAssemblyReference.cache

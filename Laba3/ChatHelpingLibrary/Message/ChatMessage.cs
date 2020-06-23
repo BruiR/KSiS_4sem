@@ -19,7 +19,6 @@ namespace ChatHelpingLibrary
     {
         public string Content;
         public bool IsAnyFiles;
-        //public Dictionary<int, string> FilesDictionary;
         public List<FileInMessage> FilesInMessageList;
         public string SenderName;
         public int SenderId; 
@@ -31,7 +30,6 @@ namespace ChatHelpingLibrary
             dateTime = DateTime.ToString();
             Content = content;
             FilesInMessageList = new List<FileInMessage>();
-            //FilesDictionary = new Dictionary<int, string>();
             IsAnyFiles = false;
             ReceiverId = receiverId;
             SenderName = senderName;

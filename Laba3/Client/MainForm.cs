@@ -20,7 +20,7 @@ namespace Client
     public partial class MainForm : Form
     {
         ClientManager currentClient;
-        HttpClientManager HttpClient;
+        HttpClientManager httpClient;
         public static MainForm f1;
         public bool IsLogin = false;
         public int NewMessageChatId;
@@ -35,7 +35,7 @@ namespace Client
         public MainForm()
         {
             InitializeComponent();
-            HttpClient = new HttpClientManager();
+            httpClient = new HttpClientManager();
             currentClient = new ClientManager();
             currentClient.ReceiveMessageHandler += HandleReceivedMessages;
             f1 = this;
@@ -150,21 +150,21 @@ namespace Client
         {
             if (selectedDialog != -1)
             {
-                if ((MessageTBox.Text.Length != 0) || (HttpClient.LoadedFiles.Count != 0))
+                if ((MessageTBox.Text.Length != 0) || (httpClient.LoadedFiles.Count != 0))
                 {
                     ChatMessage chatMessage = new ChatMessage(DateTime.Now, currentClient.clientIp, currentClient.clientPort, MessageTBox.Text, currentClient.UserName, selectedDialogId);
                     
-                    if (HttpClient.LoadedFiles.Count != 0)
+                    if (httpClient.LoadedFiles.Count != 0)
                     {
                         chatMessage.IsAnyFiles = true;
                         var fileInMessageList = new List<FileInMessage>();
-                        foreach (KeyValuePair<int, string> keyValuePair in HttpClient.LoadedFiles)
+                        foreach (KeyValuePair<int, string> keyValuePair in httpClient.LoadedFiles)
                         {
                             chatMessage.FilesInMessageList.Add(new FileInMessage()
                             { fileID = keyValuePair.Key, fileName = keyValuePair.Value });
                         }
-                        HttpClient.LoadedFiles.Clear();
-                        HttpClient.SizeOfLloadedFiles = 0;
+                        httpClient.LoadedFiles.Clear();
+                        httpClient.sizeOfLoadedFiles = 0;
                         LoadedFIlesCBox.SelectedIndex = -1;
                         UpdateFilesList();
                     }
@@ -220,26 +220,18 @@ namespace Client
             f1.flowLayoutPanel.BeginInvoke((MethodInvoker)(() => f1.flowLayoutPanel.Controls.Add(lbl2)));
         }
 
-        private async void ButtonDownloadFileClick(object sender, EventArgs e, int fileId)
+        private void ButtonDownloadFileClick(object sender, EventArgs e, int fileId)
         {
             if (saveFileDialog1.ShowDialog() == DialogResult.OK)
             {
-                byte[] FilesBytes = await HttpClient.GetFileToSave(fileId);
-                if (FilesBytes != null)
-                {
-                    string fileName = saveFileDialog1.FileName;
-                    using (FileStream outputFile = new FileStream(fileName, FileMode.Create))
-                    {
-                        outputFile.Write(FilesBytes, 0, FilesBytes.Length);
-                    }
-                }
+                httpClient.GetFileToSave(fileId, saveFileDialog1.FileName);
             }
             
         }
 
         private async void ButtonFileInfoClick(object sender, EventArgs eventArgs, int fileId)
         {
-            string[] Info = await HttpClient.GetFileInformation(fileId);
+            string[] Info = await httpClient.GetFileInformation(fileId);
             if (Info != null)
             {
                 FileNameLabel.Text = Info[0];
@@ -400,10 +392,10 @@ namespace Client
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
                 string filePath = openFileDialog1.FileName;
-                if (HttpClient.CheckFileRestrictions(filePath))
+                if (httpClient.CheckFileRestrictions(filePath))
                 {
-                    int fileId = await HttpClient.LoadFile(filePath);
-                    HttpClient.LoadedFiles.Add(fileId, Path.GetFileName(filePath));
+                    int fileId = await httpClient.LoadFile(filePath);
+                    httpClient.LoadedFiles.Add(fileId, Path.GetFileName(filePath));
                     LoadedFIlesCBox.Text = "";
                     LoadedFIlesCBox.SelectedIndex = -1;
                     UpdateFilesList();
@@ -420,7 +412,7 @@ namespace Client
             if (LoadedFIlesCBox.SelectedIndex != -1)
             {
                 int fileID = ((KeyValuePair<int, string>)LoadedFIlesCBox.SelectedItem).Key;
-                HttpClient.DeleteFile(fileID);
+                httpClient.DeleteFile(fileID);
                 LoadedFIlesCBox.Text = "";
                 LoadedFIlesCBox.SelectedIndex = -1;
                 UpdateFilesList();
@@ -430,7 +422,7 @@ namespace Client
         public void UpdateFilesList()
         {
             LoadedFIlesCBox.Items.Clear();
-            foreach (KeyValuePair<int, string> file in HttpClient.LoadedFiles)
+            foreach (KeyValuePair<int, string> file in httpClient.LoadedFiles)
             {
                 LoadedFIlesCBox.Items.Add(file);
             }

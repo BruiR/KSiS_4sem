@@ -10,7 +10,8 @@ namespace ServerHttp
     {
         static void Main(string[] args)
         {
-            var server = new Server();
+            var httpServer = new Server();
+            httpServer.Listening();
             Console.ReadLine();
         }
     }
